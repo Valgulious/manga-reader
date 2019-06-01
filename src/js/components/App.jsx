@@ -1,9 +1,14 @@
 import React from 'react'
+import Menu from './menu/Menu.jsx'
+import Body from './Body.jsx'
 
 const App = () => {
     return(
         <div className="uk-align-center heig">
-            <h1>Test</h1>
+            <div className='uk-flex uk-flex-between'>
+                <Menu/>
+                <Body/>
+            </div>
         </div>
     )
 };
