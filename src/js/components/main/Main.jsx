@@ -39,6 +39,7 @@ class Main extends Component {
                                         desc={manga.description}
                                         status={manga.status}
                                         cover={manga.imgFileName}
+                                        link={manga.link}
                                     />
                                 ))
                             }
