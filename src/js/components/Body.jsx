@@ -12,7 +12,7 @@ const Body = () => {
     return(
         <Switch>
             <Route exact path='/' component={Main}/>
-            <Route exact path='/:link' component={Manga}/>
+            <Route path='/:link' component={Manga}/>
             <Route exact path='/lists/scheduled' component={Scheduled}/>
             <Route exact path='/lists/read' component={Read}/>
             <Route exact path='/lists/readed' component={Readed}/>

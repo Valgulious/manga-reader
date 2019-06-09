@@ -44,6 +44,8 @@ class Form extends Component {
 
                    <div className='uk-modal-dialog uk-modal-body'>
 
+                       <button className="uk-modal-close-default" type="button" uk-close=""></button>
+
                        <form onSubmit={this.handleSubmit}>
 
                            <fieldset className='uk-fieldset'>
@@ -51,31 +53,35 @@ class Form extends Component {
                                <legend className="uk-legend">Добавление манги</legend>
 
                                <div className="uk-margin">
-                                   <input id='rt' className="uk-input" type="text" name='russianTitle' placeholder="Русское название манги" />
+                                   <input id='rt' className="uk-input" type="text" name='russianTitle'
+                                          placeholder="Русское название манги"  required/>
                                </div>
 
                                <div className="uk-margin">
-                                   <input id='et' className="uk-input" type="text" name='englishTitle' placeholder="Английское название манги" />
+                                   <input id='et' className="uk-input" type="text" name='englishTitle'
+                                          placeholder="Английское название манги" required/>
                                </div>
 
                                <div className="uk-margin">
-                                   <input id='at' className="uk-input" type="text" name='author' placeholder="Автор манги" />
+                                   <input id='at' className="uk-input" type="text" name='author'
+                                          placeholder="Автор манги" required/>
                                </div>
 
                                <div className="uk-margin">
-                                   <textarea id='desc' className="uk-textarea" name='description' rows="5" placeholder="Описание"></textarea>
+                                   <textarea id='desc' className="uk-textarea" name='description' rows="5"
+                                             placeholder="Описание" required></textarea>
                                </div>
 
                                <div className="uk-margin">
                                    <select id='st' className="uk-select" name='status'>
-                                       <option value='cameout'>Завершено</option>
-                                       <option value='comingout'>Переводится</option>
+                                       <option value='cameout'>Вышла</option>
+                                       <option value='comingout'>Выходит</option>
                                    </select>
                                </div>
 
                                <div className="uk-margin">
                                    <div uk-form-custom="">
-                                       <input id='file' type="file" name='file'/>
+                                       <input id='file' type="file" name='file' required/>
                                        <button className="uk-button uk-button-primary" type="button" tabIndex="-1">
                                            Выбрать обложку
                                        </button>

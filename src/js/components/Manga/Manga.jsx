@@ -20,7 +20,7 @@ class Manga extends Component{
 
     componentWillMount() {
 
-        fetch('http://localhost:8080/manga/getByLink?link=' + this.props.match.params.link, {
+        fetch('http://localhost:8080/manga/' + this.props.match.params.link, {
             headers: {
                 'Accept': 'application/json'
             }
@@ -33,9 +33,21 @@ class Manga extends Component{
 
     render() {
         return(
-            <h1>
-                {this.state.manga.russianTitle}
-            </h1>
+            <div className='uk-width-3-4'>
+                <div className='uk-card uk-card-default uk-flex'>
+                    <div className='uk-width-2-3 uk-padding-small'>
+                        <h1>{this.state.manga.russianTitle}</h1>
+                        <p>{this.state.manga.englishTitle}</p>
+                        <p>Автор: {this.state.manga.author}</p>
+                        <p>Статус: {this.state.manga.status === "CAMEOUT" ? "Вышла" : "Выходит"}</p>
+                        <h3>Описание</h3>
+                        <p>{this.state.manga.description}</p>
+                    </div>
+                    <div className='uk-width-1-3 uk-padding-small'>
+                        <img src={"http://localhost:8080/covers/" + this.state.manga.imgFileName} alt=""/>
+                    </div>
+                </div>
+            </div>
         )
     }
 
