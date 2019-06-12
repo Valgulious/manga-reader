@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Item from './Item.jsx'
+import Form from './Form.jsx'
 
 class Main extends Component {
 
@@ -11,44 +13,40 @@ class Main extends Component {
     }
 
     componentWillMount() {
-        // $.ajax({
-        //     type: 'GET',
-        //     url: 'localhost:8080/getAll',
-        //     dataType: 'json',
-        //     success: (result) => {
-        //         this.setState({mangas: result});
-        //         console.log(result)
-        //     },
-        //     error: function(jqXHR, textStatus, errorThrown) {
-        //         alert(jqXHR.status + ' ' + jqXHR.responseText);
-        //     }
-        // })
 
-        fetch('http://localhost:8080/getAll')
+        fetch('http://localhost:8080/manga/getAll')
             .then(res => res.json())
             .then(res => {
-                console.log(res)
+                this.setState({mangas: res});
             });
 
-        // fetch('http://localhost:8080/getAll')
-        //     .then(function (response) {
-        //         console.log(response.headers.get('Content-Type')); // application/json; charset=utf-8
-        //         console.log((response.status));
-        //         return response.json();
-        //     })
-        //     .then(function (result) {
-        //         console.log(result);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     })
     }
 
     render() {
+        const mangas = this.state.mangas;
+
         return(
             <div className='uk-width-3-4'>
                 <div className='uk-card uk-card-default'>
-                    <h1>Mangas</h1>
+                    <div className='uk-flex uk-flex-between'>
+                        <div className='uk-child-width-1-4@m uk-child-width-1-2@s' id='mangas' uk-grid="">
+                            {
+                                mangas.map((manga) => (
+                                    <Item
+                                        rusTitle={manga.russianTitle}
+                                        engTitle={manga.englishTitle}
+                                        author={manga.author}
+                                        desc={manga.description}
+                                        status={manga.status}
+                                        cover={manga.imgFileName}
+                                        link={manga.link}
+                                    />
+                                ))
+                            }
+                        </div>
+
+                        <Form/>
+                    </div>
                 </div>
             </div>
         );

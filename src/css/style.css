@@ -2,5 +2,8 @@
     max-width: 70vw;
     /*background-color: #d3d3d3;*/
     padding: 10px;
-    min-height: 900px;
+}
+
+h1, p {
+    margin: 0;
 }
