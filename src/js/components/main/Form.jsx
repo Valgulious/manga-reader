@@ -5,33 +5,65 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            standByRusTitle: false,
+            standByEngTitle: false
+        };
+
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+
+        console.log(e.target.id);
+
+        if (e.target.id === 'rt') {
+
+            fetch('http://localhost:8080/manga/standByRussianTitle?russianTitle=' + e.target.value)
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({standByRusTitle: res})
+                })
+        } else {
+            fetch('http://localhost:8080/manga/standByEnglishTitle?englishTitle=' + e.target.value)
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({standByEngTitle: res})
+                })
+        }
+
     }
 
     handleSubmit(e) {
 
         e.preventDefault();
 
-        let formData = new FormData();
+       if (!this.state.standByRusTitle && !this.state.standByEngTitle) {
 
-        const rt = document.getElementById('rt');
-        const et = document.getElementById('et');
-        const at = document.getElementById('at');
-        const desc = document.getElementById('desc');
-        const st = document.getElementById('st');
-        const file = document.getElementById('file');
+           let formData = new FormData();
 
-        formData.append(rt.name, rt.value);
-        formData.append(et.name, et.value);
-        formData.append(at.name, at.value);
-        formData.append(desc.name, desc.value);
-        formData.append(st.name, st.value);
-        formData.append(file.name, file.files[0]);
+           const rt = document.getElementById('rt');
+           const et = document.getElementById('et');
+           const at = document.getElementById('at');
+           const desc = document.getElementById('desc');
+           const st = document.getElementById('st');
+           const file = document.getElementById('file');
 
-        fetch('http://localhost:8080/manga/create', {
-            method: 'post',
-            body: formData
-        });
+           formData.append(rt.name, rt.value);
+           formData.append(et.name, et.value);
+           formData.append(at.name, at.value);
+           formData.append(desc.name, desc.value);
+           formData.append(st.name, st.value);
+           formData.append(file.name, file.files[0]);
+
+           fetch('http://localhost:8080/manga/create', {
+               method: 'post',
+               body: formData
+           });
+       } else {
+           alert("Манга с таким название уже существует");
+       }
     }
 
     render() {
@@ -54,12 +86,12 @@ class Form extends Component {
 
                                <div className="uk-margin">
                                    <input id='rt' className="uk-input" type="text" name='russianTitle'
-                                          placeholder="Русское название манги"  required/>
+                                          placeholder="Русское название манги" onChange={this.handleChange} required/>
                                </div>
 
                                <div className="uk-margin">
                                    <input id='et' className="uk-input" type="text" name='englishTitle'
-                                          placeholder="Английское название манги" required/>
+                                          placeholder="Английское название манги" onChange={this.handleChange} required/>
                                </div>
 
                                <div className="uk-margin">
