@@ -69,10 +69,10 @@ class Form extends Component {
     render() {
         return(
             <div>
-                <a className='uk-position-fixed uk-padding-small' uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #form"
+                <a className='uk-position-fixed uk-padding-small' uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #mangaForm"
                    title='Добавить мангу'></a>
 
-                <div id="form" className='uk-modal-container' uk-modal="">
+                <div id="mangaForm" className='uk-modal-container' uk-modal="">
 
                    <div className='uk-modal-dialog uk-modal-body'>
 
