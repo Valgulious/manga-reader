@@ -4,6 +4,14 @@
     padding: 10px;
 }
 
-h1, p {
+h1,  p {
     margin: 0;
+}
+
+.pgt8 {
+    padding-top: 8px;
+}
+
+.pgt10 {
+    padding-top: 10px;
 }
