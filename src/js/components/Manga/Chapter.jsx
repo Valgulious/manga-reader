@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from "react-router-dom";
 
 class Chapter extends Component{
 
@@ -36,7 +37,7 @@ class Chapter extends Component{
     handleClickPrev() {
 
         if (this.state.page > 0) {
-            this.setState((state) => ({page: ++state.page}));
+            this.setState((state) => ({page: --state.page}));
             console.log(this.state.page)
         } else {
             console.log(this.state.page + ',' + this.state.chapter.images.length);
@@ -72,6 +73,7 @@ class Chapter extends Component{
                           uk-icon="icon: arrow-left; ratio: 1.5"></span>
                     <span className='uk-link uk-margin-small pgt8' onClick={this.handleClickNext}
                           uk-icon="icon: arrow-right; ratio: 1.5"></span>
+                    <Link className='uk-position-top-right' to={'/' + `${this.state.chapter.mangaLink}`} uk-icon='icon: close; ratio: 1.5'></Link>
                 </div>
                 <img src={'http://localhost:8080/img/' + this.state.chapter.mangaLink + '/' + this.state.chapter.number +
                     '/' + this.state.chapter.images[this.state.page]} alt="" onClick={this.handleClickNext}/>
