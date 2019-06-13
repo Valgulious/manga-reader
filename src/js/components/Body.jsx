@@ -7,12 +7,14 @@ import Readed from './lists/Readed.jsx'
 import Thrown from './lists/Thrown.jsx'
 import Profile from './profile/Profile.jsx'
 import Manga from './Manga/Manga.jsx'
+import Chapter from './Manga/Chapter.jsx'
 
 const Body = () => {
     return(
         <Switch>
             <Route exact path='/' component={Main}/>
-            <Route path='/:link' component={Manga}/>
+            <Route exact path='/:link' component={Manga}/>
+            <Route exact path='/:link/:chapter' component={Chapter}/>
             <Route exact path='/lists/scheduled' component={Scheduled}/>
             <Route exact path='/lists/read' component={Read}/>
             <Route exact path='/lists/readed' component={Readed}/>

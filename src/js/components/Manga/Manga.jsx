@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from "react-router-dom";
 import Form from './Form.jsx'
 
 class Manga extends Component{
@@ -66,7 +67,7 @@ class Manga extends Component{
                            <p>{this.state.manga.description}</p>
                        </div>
                        <div className='uk-width-1-3 uk-padding-small'>
-                           <img src={"http://localhost:8080/covers/" + this.state.manga.imgFileName} alt=""/>
+                           <img src={"http://localhost:8080/img/covers/" + this.state.manga.imgFileName} alt=""/>
                            <button className="uk-button uk-button-primary uk-align-center uk-margin-small" type="button"
                                    uk-toggle="target: #volForm">Добавить главу
                            </button>
@@ -80,11 +81,13 @@ class Manga extends Component{
                             </button>
                         </div>
                         <span className="toggle"></span>
-                        <div className="toggle" hidden>
+                        <div className="toggle uk-flex uk-flex-wrap"  hidden>
                             {volumes.map(vol => (
-                                <p>
-                                    {"Глава " + vol.number}
-                                </p>
+                                <div className='uk-padding-small'>
+                                    <Link to={`/${vol.mangaLink}/${vol.number}`}>
+                                        {"Глава " + vol.number}
+                                    </Link>
+                                </div>
                             ))}
                         </div>
                     </div>
